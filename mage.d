@@ -703,7 +703,7 @@ void main(
                 }
                 else
                 {
-                    component_count = 4;
+                    component_count = vector_count;
                 }
 
                 matrix.SetFromName( value_array[ 0 ], vector_count, component_count );

@@ -152,11 +152,12 @@ mage [options] first_matrix second_matrix ...
           
 ## Named matrices
 
-* matrix_name
-* matrix_name:3
-* matrix_name:4
+* matrix_name<br/>
+  matrix_name:4
+  matrix_name:4:4
 * matrix_name:4:3
-* matrix_name:4:4
+* matrix_name:3<br/>
+  matrix_name:3:3
 
 ## Version
 
