@@ -23,6 +23,7 @@
 // -- IMPORTS
 
 import std.conv : to;
+import std.regex : matchFirst, regex, Captures, Regex;
 import std.stdio : writeln;
 import std.string : indexOf, split, startsWith, strip;
 
@@ -367,80 +368,6 @@ struct MATRIX
 
     // ~~
 
-    void SetProductMatrix(
-        MATRIX first_matrix,
-        MATRIX second_matrix
-        )
-    {
-        long
-            first_vector_index,
-            second_component_index,
-            second_vector_index;
-        string
-            component,
-            second_component,
-            factor_component,
-            first_component;
-
-        foreach ( vector_index; 0 .. VectorCount )
-        {
-            foreach ( component_index; 0 .. ComponentCount )
-            {
-                component = ComponentArray[ vector_index ][ component_index ];
-                component = "0.0";
-                first_vector_index = vector_index;
-                second_component_index = component_index;
-
-                foreach ( first_component_index; 0 .. ComponentCount )
-                {
-                    second_vector_index = first_component_index;
-                    first_component = first_matrix.ComponentArray[ first_vector_index ][ first_component_index ];
-                    second_component = second_matrix.ComponentArray[ second_vector_index ][ second_component_index ];
-
-                    if ( first_component == "0.0" || second_component == "0.0" )
-                    {
-                        factor_component = "0.0";
-                    }
-                    else if ( first_component == "1.0" )
-                    {
-                        factor_component = second_component;
-                    }
-                    else if ( second_component == "1.0" )
-                    {
-                        factor_component = first_component;
-                    }
-                    else
-                    {
-                        if ( IsSumComponent( first_component ) )
-                        {
-                            first_component = "( " ~ first_component ~ " )";
-                        }
-
-                        if ( IsSumComponent( second_component ) )
-                        {
-                            second_component = "( " ~ second_component ~ " )";
-                        }
-
-                        factor_component = first_component ~ " * " ~ second_component;
-                    }
-
-                    if ( component == "0.0" )
-                    {
-                        component = factor_component;
-                    }
-                    else if ( factor_component != "0.0" )
-                    {
-                        component = component ~ " + " ~ factor_component;
-                    }
-                }
-
-                ComponentArray[ vector_index ][ component_index ] = component;
-            }
-        }
-    }
-
-    // ~~
-
     void SetFromName(
         string name,
         long vector_count,
@@ -461,24 +388,162 @@ struct MATRIX
 
     // ~~
 
-    void Print(
-        string name
+    void SetProductMatrix(
+        MATRIX first_matrix,
+        MATRIX second_matrix
         )
     {
+        long
+            first_vector_index,
+            second_component_index,
+            second_vector_index;
+        string
+            component,
+            term_component,
+            first_component,
+            second_component;
+
         foreach ( vector_index; 0 .. VectorCount )
         {
             foreach ( component_index; 0 .. ComponentCount )
             {
-                writeln(
-                    name,
-                    '.',
-                    ( "XYZW"[ vector_index ] ),
-                    "Vector.",
-                    ( "XYZW"[ component_index ] ),
-                    " = ",
-                    ComponentArray[ vector_index ][ component_index ],
-                    ";"
-                    );
+                component = ComponentArray[ vector_index ][ component_index ];
+                component = "0.0";
+                first_vector_index = vector_index;
+                second_component_index = component_index;
+
+                foreach ( first_component_index; 0 .. ComponentCount )
+                {
+                    second_vector_index = first_component_index;
+                    first_component = first_matrix.ComponentArray[ first_vector_index ][ first_component_index ];
+                    second_component = second_matrix.ComponentArray[ second_vector_index ][ second_component_index ];
+
+                    if ( first_component == "0.0" || second_component == "0.0" )
+                    {
+                        term_component = "0.0";
+                    }
+                    else if ( first_component == "1.0" )
+                    {
+                        term_component = second_component;
+                    }
+                    else if ( second_component == "1.0" )
+                    {
+                        term_component = first_component;
+                    }
+                    else
+                    {
+                        if ( IsSumComponent( first_component ) )
+                        {
+                            first_component = "( " ~ first_component ~ " )";
+                        }
+
+                        if ( IsSumComponent( second_component ) )
+                        {
+                            second_component = "( " ~ second_component ~ " )";
+                        }
+
+                        term_component = first_component ~ " * " ~ second_component;
+                    }
+
+                    if ( component == "0.0" )
+                    {
+                        component = term_component;
+                    }
+                    else if ( term_component != "0.0" )
+                    {
+                        component = component ~ " + " ~ term_component;
+                    }
+                }
+
+                ComponentArray[ vector_index ][ component_index ] = component;
+            }
+        }
+    }
+    
+    // ~~
+    
+    bool FindMatch(
+        string text,
+        Regex!char expression,
+        ref Captures!( string, ulong ) match
+        )
+    {
+        match = text.matchFirst( expression );
+
+        return !match.empty();
+    }
+    
+    // ~~
+    
+    string GetFixedExpression(
+        string expression
+        )
+    {
+        string
+            old_expression;
+        Captures!( string, ulong )
+            match;
+        Regex!char
+            negative_addition_expression,
+            negative_product_expression,
+            positive_product_expression,
+            positive_substraction_expression;
+
+        negative_addition_expression = regex( `(.+)\+ -([A-Za-z0-9_\.]+.*)` );
+        positive_substraction_expression = regex( `(.+)\- -([A-Za-z0-9_\.]+.*)` );
+        negative_product_expression = regex( `(.+) ([A-Za-z0-9_\.]+) \* -([A-Za-z0-9_\.]+.*)` );
+        positive_product_expression = regex( `(.+) -([A-Za-z0-9_\.]+) \* -([A-Za-z0-9_\.]+.*)` );
+        
+        do
+        {
+            old_expression = expression;
+            
+            if ( FindMatch( expression, negative_addition_expression, match ) )
+            {
+                expression = match[ 1 ] ~ "- " ~ match[ 2 ];
+            }
+            else if ( FindMatch( expression, positive_substraction_expression, match ) )
+            {
+                expression = match[ 1 ] ~ "+ " ~ match[ 2 ];
+            }
+            else if ( FindMatch( expression, negative_product_expression, match ) )
+            {
+                expression = match[ 1 ] ~ " -" ~ match[ 2 ] ~ " * " ~ match[ 3 ];
+            }
+            else if ( FindMatch( expression, positive_product_expression, match ) )
+            {
+                expression = match[ 1 ] ~ " " ~ match[ 2 ] ~ " * " ~ match[ 3 ];
+            }
+        }
+        while ( expression != old_expression );
+        
+        return expression;
+    }
+
+    // ~~
+
+    void Print(
+        string name
+        )
+    {
+        string
+            expression;
+            
+        foreach ( vector_index; 0 .. VectorCount )
+        {
+            foreach ( component_index; 0 .. ComponentCount )
+            {
+                expression
+                    = name
+                      ~ '.'
+                      ~ "XYZW"[ vector_index ]
+                      ~ "Vector."
+                      ~ "XYZW"[ component_index ]
+                      ~ " = "
+                      ~ ComponentArray[ vector_index ][ component_index ]
+                      ~ ";";
+                      
+                writeln( GetFixedExpression( expression ) );
             }
 
             writeln();
@@ -514,8 +579,6 @@ void main(
         second_matrix;
     MATRIX[]
         matrix_array;
-
-    // Test(); return;
 
     reverse_option_is_enabled = false;
 

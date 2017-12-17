@@ -31,7 +31,6 @@ set -x
 ../mage "z_scaling_matrix" "z_scaling_matrix"
 ../mage "vector_z_scaling_product_matrix" "vector_matrix" "z_scaling_matrix"
 
-
 ../mage "x_rotation_matrix" "x_rotation_matrix"
 ../mage "vector_x_rotation_product_matrix" "vector_matrix" "x_rotation_matrix"
 
@@ -71,10 +70,10 @@ set -x
 ../mage "vector_zx_y_rotation_matrix" "vector_matrix" "z_rotation_matrix" "x_rotation_matrix" "y_rotation_matrix"
 ../mage --reverse "vector_z_xy_rotation_matrix" "vector_matrix" "z_rotation_matrix" "x_rotation_matrix" "y_rotation_matrix"
 
-../mage "zy_x_rotationmatrix" "z_rotation_matrix" "y_rotation_matrix" "x_rotation_matrix"
+../mage "zy_x_rotation_matrix" "z_rotation_matrix" "y_rotation_matrix" "x_rotation_matrix"
 ../mage --reverse "z_yx_rotation_matrix" "z_rotation_matrix" "y_rotation_matrix" "x_rotation_matrix"
 
-../mage "vector_zy_x_rotationmatrix" "vector_matrix" "z_rotation_matrix" "y_rotation_matrix" "x_rotation_matrix"
+../mage "vector_zy_x_rotation_matrix" "vector_matrix" "z_rotation_matrix" "y_rotation_matrix" "x_rotation_matrix"
 ../mage --reverse "vector_z_yx_rotation_matrix" "vector_matrix" "z_rotation_matrix" "y_rotation_matrix" "x_rotation_matrix"
 
 
