@@ -40,13 +40,13 @@ xy_z_rotation_matrix.XVector.Y = y_cosinus * z_sinus;
 xy_z_rotation_matrix.XVector.Z = -y_sinus;
 xy_z_rotation_matrix.XVector.W = 0.0;
 
-xy_z_rotation_matrix.YVector.X = x_sinus * y_sinus * z_cosinus + x_cosinus * -z_sinus;
+xy_z_rotation_matrix.YVector.X = x_sinus * y_sinus * z_cosinus - x_cosinus * z_sinus;
 xy_z_rotation_matrix.YVector.Y = x_sinus * y_sinus * z_sinus + x_cosinus * z_cosinus;
 xy_z_rotation_matrix.YVector.Z = x_sinus * y_cosinus;
 xy_z_rotation_matrix.YVector.W = 0.0;
 
-xy_z_rotation_matrix.ZVector.X = x_cosinus * y_sinus * z_cosinus + -x_sinus * -z_sinus;
-xy_z_rotation_matrix.ZVector.Y = x_cosinus * y_sinus * z_sinus + -x_sinus * z_cosinus;
+xy_z_rotation_matrix.ZVector.X = x_cosinus * y_sinus * z_cosinus + x_sinus * z_sinus;
+xy_z_rotation_matrix.ZVector.Y = x_cosinus * y_sinus * z_sinus - x_sinus * z_cosinus;
 xy_z_rotation_matrix.ZVector.Z = x_cosinus * y_cosinus;
 xy_z_rotation_matrix.ZVector.W = 0.0;
 
@@ -61,23 +61,23 @@ mage --left "vector_z_yx_rotation_matrix" "vector_matrix" "z_rotation_matrix" "y
 ```
 ```c++
 vector_z_yx_rotation_matrix.XVector.X = z_cosinus * y_cosinus;
-vector_z_yx_rotation_matrix.XVector.Y = z_cosinus * -y_sinus * -x_sinus + z_sinus * x_cosinus;
-vector_z_yx_rotation_matrix.XVector.Z = z_cosinus * -y_sinus * x_cosinus + z_sinus * x_sinus;
+vector_z_yx_rotation_matrix.XVector.Y = z_cosinus * y_sinus * x_sinus + z_sinus * x_cosinus;
+vector_z_yx_rotation_matrix.XVector.Z = -z_cosinus * y_sinus * x_cosinus + z_sinus * x_sinus;
 vector_z_yx_rotation_matrix.XVector.W = 0.0;
 
 vector_z_yx_rotation_matrix.YVector.X = -z_sinus * y_cosinus;
-vector_z_yx_rotation_matrix.YVector.Y = -z_sinus * -y_sinus * -x_sinus + z_cosinus * x_cosinus;
-vector_z_yx_rotation_matrix.YVector.Z = -z_sinus * -y_sinus * x_cosinus + z_cosinus * x_sinus;
+vector_z_yx_rotation_matrix.YVector.Y = -z_sinus * y_sinus * x_sinus + z_cosinus * x_cosinus;
+vector_z_yx_rotation_matrix.YVector.Z = z_sinus * y_sinus * x_cosinus + z_cosinus * x_sinus;
 vector_z_yx_rotation_matrix.YVector.W = 0.0;
 
 vector_z_yx_rotation_matrix.ZVector.X = y_sinus;
-vector_z_yx_rotation_matrix.ZVector.Y = y_cosinus * -x_sinus;
+vector_z_yx_rotation_matrix.ZVector.Y = -y_cosinus * x_sinus;
 vector_z_yx_rotation_matrix.ZVector.Z = y_cosinus * x_cosinus;
 vector_z_yx_rotation_matrix.ZVector.W = 0.0;
 
-vector_z_yx_rotation_matrix.WVector.X = vector.X * z_cosinus * y_cosinus + vector.Y * -z_sinus * y_cosinus + vector.Z * y_sinus;
-vector_z_yx_rotation_matrix.WVector.Y = vector.X * ( z_cosinus * -y_sinus * -x_sinus + z_sinus * x_cosinus ) + vector.Y * ( -z_sinus * -y_sinus * -x_sinus + z_cosinus * x_cosinus ) + vector.Z * y_cosinus * -x_sinus;
-vector_z_yx_rotation_matrix.WVector.Z = vector.X * ( z_cosinus * -y_sinus * x_cosinus + z_sinus * x_sinus ) + vector.Y * ( -z_sinus * -y_sinus * x_cosinus + z_cosinus * x_sinus ) + vector.Z * y_cosinus * x_cosinus;
+vector_z_yx_rotation_matrix.WVector.X = vector.X * z_cosinus * y_cosinus - vector.Y * z_sinus * y_cosinus + vector.Z * y_sinus;
+vector_z_yx_rotation_matrix.WVector.Y = vector.X * ( z_cosinus * y_sinus * x_sinus + z_sinus * x_cosinus ) + vector.Y * ( -z_sinus * y_sinus * x_sinus + z_cosinus * x_cosinus ) - vector.Z * y_cosinus * x_sinus;
+vector_z_yx_rotation_matrix.WVector.Z = vector.X * ( -z_cosinus * y_sinus * x_cosinus + z_sinus * x_sinus ) + vector.Y * ( z_sinus * y_sinus * x_cosinus + z_cosinus * x_sinus ) + vector.Z * y_cosinus * x_cosinus;
 vector_z_yx_rotation_matrix.WVector.W = 1.0;
 ```
 
