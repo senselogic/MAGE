@@ -600,7 +600,7 @@ void main(
     if ( argument_array.length >= 2 )
     {
         matrix_name = argument_array[ 0 ];
-        matrix_array.length = argument_array.length - 1;
+        matrix_array.length = argument_array.length.to!long() - 1;
 
         foreach ( argument_index; 1 .. argument_array.length )
         {
@@ -791,9 +791,9 @@ void main(
         }
         else
         {
-            product_matrix = matrix_array[ matrix_array.length - 1 ];
+            product_matrix = matrix_array[ matrix_array.length.to!long() - 1 ];
 
-            for ( matrix_index = matrix_array.length - 2;
+            for ( matrix_index = matrix_array.length.to!long() - 2;
                   matrix_index >= 0;
                   --matrix_index )
             {
