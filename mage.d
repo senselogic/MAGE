@@ -812,7 +812,7 @@ void main(
         writeln( "Options :" );
         writeln( "    --reverse" );
         
-        writeln( "Invalid arguments : " ~ argument_array.to!string() );
+        writeln( "Invalid arguments : ", argument_array );
     }
 }
 
