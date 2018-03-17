@@ -124,7 +124,7 @@ mage [options] first_matrix second_matrix ...
 
 ### Options
 
-```bash
+```
 --reverse : compute the matrix product in reverse order
 ```
 
