@@ -145,15 +145,15 @@ mage [options] first_matrix second_matrix ...
 
 * w_vector_x, w_vector_y, w_vector_z
 * x_vector_x; y_vector_y; z_vector_z
-* x_vector_x; y_vector_y; z_vector_z; w_vector_x; w_vector_y; w_vector_z
-* x_vector_x; x_vector_y; x_vector_z; y_vector_x; y_vector_y; y_vector_z; z_vector_x; z_vector_y; z_vector_z
-* x_vector_x; x_vector_y; x_vector_z; y_vector_x; y_vector_y; y_vector_z; z_vector_x; z_vector_y; z_vector_z; w_vector_x; w_vector_y; w_vector_z
-* x_vector_x; x_vector_y; x_vector_z; x_vector_w; y_vector_x; y_vector_y; y_vector_z; y_vector_w; z_vector_x; z_vector_y; z_vector_z; z_vector_w; w_vector_x; w_vector_y; w_vector_z; w_vector_w
+* x_vector_x; y_vector_y; z_vector_z;<br/>w_vector_x; w_vector_y; w_vector_z
+* x_vector_x; x_vector_y; x_vector_z;<br/>y_vector_x; y_vector_y; y_vector_z;<br/>z_vector_x; z_vector_y; z_vector_z
+* x_vector_x; x_vector_y; x_vector_z;<br/>y_vector_x; y_vector_y; y_vector_z;<br/>z_vector_x; z_vector_y; z_vector_z; w_vector_x; w_vector_y; w_vector_z
+* x_vector_x; x_vector_y; x_vector_z; x_vector_w;<br/>y_vector_x; y_vector_y; y_vector_z; y_vector_w;<br/>z_vector_x; z_vector_y; z_vector_z; z_vector_w;<br/>w_vector_x; w_vector_y; w_vector_z; w_vector_w
           
 ## Named matrices
 
 * matrix_name<br/>
-  matrix_name:4
+  matrix_name:4<br/>
   matrix_name:4:4
 * matrix_name:4:3
 * matrix_name:3<br/>
