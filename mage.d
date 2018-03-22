@@ -465,7 +465,7 @@ struct MATRIX
     bool FindMatch(
         string text,
         Regex!char expression,
-        ref Captures!( string, ulong ) match
+        ref Captures!( string ) match
         )
     {
         match = text.matchFirst( expression );
@@ -481,7 +481,7 @@ struct MATRIX
     {
         string
             old_expression;
-        Captures!( string, ulong )
+        Captures!( string )
             match;
         Regex!char
             negative_addition_expression,
