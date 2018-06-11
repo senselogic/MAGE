@@ -18,16 +18,12 @@
     along with Mage.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-// == LOCAL
-
 // -- IMPORTS
 
 import std.conv : to;
 import std.regex : matchFirst, regex, Captures, Regex;
 import std.stdio : writeln;
 import std.string : indexOf, split, startsWith, strip;
-
-// == GLOBAL
 
 // -- TYPES
 
@@ -459,9 +455,9 @@ struct MATRIX
             }
         }
     }
-    
+
     // ~~
-    
+
     bool FindMatch(
         string text,
         Regex!char expression,
@@ -472,9 +468,9 @@ struct MATRIX
 
         return !match.empty();
     }
-    
+
     // ~~
-    
+
     string GetFixedExpression(
         string expression
         )
@@ -493,11 +489,11 @@ struct MATRIX
         positive_substraction_expression = regex( `(.+)\- -([A-Za-z0-9_\.]+.*)` );
         negative_product_expression = regex( `(.+) ([A-Za-z0-9_\.]+) \* -([A-Za-z0-9_\.]+.*)` );
         positive_product_expression = regex( `(.+) -([A-Za-z0-9_\.]+) \* -([A-Za-z0-9_\.]+.*)` );
-        
+
         do
         {
             old_expression = expression;
-            
+
             if ( FindMatch( expression, negative_addition_expression, match ) )
             {
                 expression = match[ 1 ] ~ "- " ~ match[ 2 ];
@@ -516,7 +512,7 @@ struct MATRIX
             }
         }
         while ( expression != old_expression );
-        
+
         return expression;
     }
 
@@ -528,7 +524,7 @@ struct MATRIX
     {
         string
             expression;
-            
+
         foreach ( vector_index; 0 .. VectorCount )
         {
             foreach ( component_index; 0 .. ComponentCount )
@@ -542,7 +538,7 @@ struct MATRIX
                       ~ " = "
                       ~ ComponentArray[ vector_index ][ component_index ]
                       ~ ";";
-                      
+
                 writeln( GetFixedExpression( expression ) );
             }
 
@@ -811,7 +807,7 @@ void main(
         writeln( "Usage : mage [options] first_matrix second_matrix ..." );
         writeln( "Options :" );
         writeln( "    --reverse" );
-        
+
         writeln( "Invalid arguments : ", argument_array );
     }
 }
