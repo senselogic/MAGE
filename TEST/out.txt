@@ -1048,3 +1048,86 @@ vector_z_yx_rotation_matrix.WVector.Z = vector.X * ( -z_cosinus * y_sinus * x_co
 vector_z_yx_rotation_matrix.WVector.W = 1.0;
 
 
+scaling_zx_y_rotation_translation_matrix.XVector.X = x_scaling * z_cosinus * y_cosinus + x_scaling * z_sinus * x_sinus * y_sinus;
+scaling_zx_y_rotation_translation_matrix.XVector.Y = x_scaling * z_sinus * x_cosinus;
+scaling_zx_y_rotation_translation_matrix.XVector.Z = -x_scaling * z_cosinus * y_sinus + x_scaling * z_sinus * x_sinus * y_cosinus;
+scaling_zx_y_rotation_translation_matrix.XVector.W = 0.0;
+
+scaling_zx_y_rotation_translation_matrix.YVector.X = -y_scaling * z_sinus * y_cosinus + y_scaling * z_cosinus * x_sinus * y_sinus;
+scaling_zx_y_rotation_translation_matrix.YVector.Y = y_scaling * z_cosinus * x_cosinus;
+scaling_zx_y_rotation_translation_matrix.YVector.Z = y_scaling * z_sinus * y_sinus + y_scaling * z_cosinus * x_sinus * y_cosinus;
+scaling_zx_y_rotation_translation_matrix.YVector.W = 0.0;
+
+scaling_zx_y_rotation_translation_matrix.ZVector.X = z_scaling * x_cosinus * y_sinus;
+scaling_zx_y_rotation_translation_matrix.ZVector.Y = -z_scaling * x_sinus;
+scaling_zx_y_rotation_translation_matrix.ZVector.Z = z_scaling * x_cosinus * y_cosinus;
+scaling_zx_y_rotation_translation_matrix.ZVector.W = 0.0;
+
+scaling_zx_y_rotation_translation_matrix.WVector.X = x_translation;
+scaling_zx_y_rotation_translation_matrix.WVector.Y = y_translation;
+scaling_zx_y_rotation_translation_matrix.WVector.Z = z_translation;
+scaling_zx_y_rotation_translation_matrix.WVector.W = 1.0;
+
+
+scaling_z_xy_rotation_matrix.XVector.X = x_scaling * ( z_cosinus * y_cosinus + z_sinus * x_sinus * y_sinus );
+scaling_z_xy_rotation_matrix.XVector.Y = x_scaling * z_sinus * x_cosinus;
+scaling_z_xy_rotation_matrix.XVector.Z = x_scaling * ( -z_cosinus * y_sinus + z_sinus * x_sinus * y_cosinus );
+scaling_z_xy_rotation_matrix.XVector.W = 0.0;
+
+scaling_z_xy_rotation_matrix.YVector.X = y_scaling * ( -z_sinus * y_cosinus + z_cosinus * x_sinus * y_sinus );
+scaling_z_xy_rotation_matrix.YVector.Y = y_scaling * z_cosinus * x_cosinus;
+scaling_z_xy_rotation_matrix.YVector.Z = y_scaling * ( z_sinus * y_sinus + z_cosinus * x_sinus * y_cosinus );
+scaling_z_xy_rotation_matrix.YVector.W = 0.0;
+
+scaling_z_xy_rotation_matrix.ZVector.X = z_scaling * x_cosinus * y_sinus;
+scaling_z_xy_rotation_matrix.ZVector.Y = -z_scaling * x_sinus;
+scaling_z_xy_rotation_matrix.ZVector.Z = z_scaling * x_cosinus * y_cosinus;
+scaling_z_xy_rotation_matrix.ZVector.W = 0.0;
+
+scaling_z_xy_rotation_matrix.WVector.X = x_translation;
+scaling_z_xy_rotation_matrix.WVector.Y = y_translation;
+scaling_z_xy_rotation_matrix.WVector.Z = z_translation;
+scaling_z_xy_rotation_matrix.WVector.W = 1.0;
+
+
+scaling_quaternion_translation_matrix.XVector.X = x_scaling * ( 1.0 - 2.0 * quaternion_y * quaternion_y - 2.0 * quaternion_z * quaternion_z );
+scaling_quaternion_translation_matrix.XVector.Y = x_scaling * ( 2.0 * quaternion_x * quaternion_y + 2.0 * quaternion_w * quaternion_z );
+scaling_quaternion_translation_matrix.XVector.Z = x_scaling * ( 2.0 * quaternion_x * quaternion_z - 2.0 * quaternion_w * quaternion_y );
+scaling_quaternion_translation_matrix.XVector.W = 0.0;
+
+scaling_quaternion_translation_matrix.YVector.X = y_scaling * ( 2.0 * quaternion_x * quaternion_y - 2.0 * quaternion_w * quaternion_z );
+scaling_quaternion_translation_matrix.YVector.Y = y_scaling * ( 1.0 - 2.0 * quaternion_x * quaternion_x - 2.0 * quaternion_z * quaternion_z );
+scaling_quaternion_translation_matrix.YVector.Z = y_scaling * ( 2.0 * quaternion_y * quaternion_z + 2.0 * quaternion_w * quaternion_x );
+scaling_quaternion_translation_matrix.YVector.W = 0.0;
+
+scaling_quaternion_translation_matrix.ZVector.X = z_scaling * ( 2.0 * quaternion_x * quaternion_z + 2.0 * quaternion_w * quaternion_y );
+scaling_quaternion_translation_matrix.ZVector.Y = z_scaling * ( 2.0 * quaternion_y * quaternion_z - 2.0 * quaternion_w * quaternion_x );
+scaling_quaternion_translation_matrix.ZVector.Z = z_scaling * ( 1.0 - 2.0 * quaternion_x * quaternion_x - 2.0 * quaternion_y * quaternion_y );
+scaling_quaternion_translation_matrix.ZVector.W = 0.0;
+
+scaling_quaternion_translation_matrix.WVector.X = x_translation;
+scaling_quaternion_translation_matrix.WVector.Y = y_translation;
+scaling_quaternion_translation_matrix.WVector.Z = z_translation;
+scaling_quaternion_translation_matrix.WVector.W = 1.0;
+
+
+scaling_quaternion_translation_matrix.XVector.X = x_scaling * ( 1.0 - 2.0 * quaternion_y * quaternion_y - 2.0 * quaternion_z * quaternion_z );
+scaling_quaternion_translation_matrix.XVector.Y = x_scaling * ( 2.0 * quaternion_x * quaternion_y + 2.0 * quaternion_w * quaternion_z );
+scaling_quaternion_translation_matrix.XVector.Z = x_scaling * ( 2.0 * quaternion_x * quaternion_z - 2.0 * quaternion_w * quaternion_y );
+scaling_quaternion_translation_matrix.XVector.W = 0.0;
+
+scaling_quaternion_translation_matrix.YVector.X = y_scaling * ( 2.0 * quaternion_x * quaternion_y - 2.0 * quaternion_w * quaternion_z );
+scaling_quaternion_translation_matrix.YVector.Y = y_scaling * ( 1.0 - 2.0 * quaternion_x * quaternion_x - 2.0 * quaternion_z * quaternion_z );
+scaling_quaternion_translation_matrix.YVector.Z = y_scaling * ( 2.0 * quaternion_y * quaternion_z + 2.0 * quaternion_w * quaternion_x );
+scaling_quaternion_translation_matrix.YVector.W = 0.0;
+
+scaling_quaternion_translation_matrix.ZVector.X = z_scaling * ( 2.0 * quaternion_x * quaternion_z + 2.0 * quaternion_w * quaternion_y );
+scaling_quaternion_translation_matrix.ZVector.Y = z_scaling * ( 2.0 * quaternion_y * quaternion_z - 2.0 * quaternion_w * quaternion_x );
+scaling_quaternion_translation_matrix.ZVector.Z = z_scaling * ( 1.0 - 2.0 * quaternion_x * quaternion_x - 2.0 * quaternion_y * quaternion_y );
+scaling_quaternion_translation_matrix.ZVector.W = 0.0;
+
+scaling_quaternion_translation_matrix.WVector.X = x_translation;
+scaling_quaternion_translation_matrix.WVector.Y = y_translation;
+scaling_quaternion_translation_matrix.WVector.Z = z_translation;
+scaling_quaternion_translation_matrix.WVector.W = 1.0;
+

@@ -89,6 +89,32 @@ struct MATRIX
 
     // ~~
 
+    void SetQuaternion(
+        )
+    {
+        ComponentArray[ XVectorIndex ][ XComponentIndex ] = "1.0 - 2.0 * quaternion_y * quaternion_y - 2.0 * quaternion_z * quaternion_z";
+        ComponentArray[ XVectorIndex ][ YComponentIndex ] = "2.0 * quaternion_x * quaternion_y + 2.0 * quaternion_w * quaternion_z";
+        ComponentArray[ XVectorIndex ][ ZComponentIndex ] = "2.0 * quaternion_x * quaternion_z - 2.0 * quaternion_w * quaternion_y";
+        ComponentArray[ XVectorIndex ][ WComponentIndex ] = "0.0";
+
+        ComponentArray[ YVectorIndex ][ XComponentIndex ] = "2.0 * quaternion_x * quaternion_y - 2.0 * quaternion_w * quaternion_z";
+        ComponentArray[ YVectorIndex ][ YComponentIndex ] = "1.0 - 2.0 * quaternion_x * quaternion_x - 2.0 * quaternion_z * quaternion_z";
+        ComponentArray[ YVectorIndex ][ ZComponentIndex ] = "2.0 * quaternion_y * quaternion_z + 2.0 * quaternion_w * quaternion_x";
+        ComponentArray[ YVectorIndex ][ WComponentIndex ] = "0.0";
+
+        ComponentArray[ ZVectorIndex ][ XComponentIndex ] = "2.0 * quaternion_x * quaternion_z + 2.0 * quaternion_w * quaternion_y";
+        ComponentArray[ ZVectorIndex ][ YComponentIndex ] = "2.0 * quaternion_y * quaternion_z - 2.0 * quaternion_w * quaternion_x";
+        ComponentArray[ ZVectorIndex ][ ZComponentIndex ] = "1.0 - 2.0 * quaternion_x * quaternion_x - 2.0 * quaternion_y * quaternion_y";
+        ComponentArray[ ZVectorIndex ][ WComponentIndex ] = "0.0";
+
+        ComponentArray[ WVectorIndex ][ XComponentIndex ] = "0.0";
+        ComponentArray[ WVectorIndex ][ YComponentIndex ] = "0.0";
+        ComponentArray[ WVectorIndex ][ ZComponentIndex ] = "0.0";
+        ComponentArray[ WVectorIndex ][ WComponentIndex ] = "1.0";
+    }
+
+    // ~~
+
     void SetFromVector(
         string w_vector_x_component,
         string w_vector_y_component,
@@ -605,6 +631,10 @@ void main(
             if ( argument == "identity_matrix" )
             {
                 matrix.SetIdentity();
+            }
+            else if ( argument == "quaternion_matrix" )
+            {
+                matrix.SetQuaternion();
             }
             else if ( argument == "vector_matrix" )
             {

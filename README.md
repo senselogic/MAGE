@@ -131,6 +131,7 @@ mage [options] first_matrix second_matrix ...
 ### Predefined matrices
 
 * identity_matrix
+* quaternion_matrix
 * vector_matrix
 * translation_matrix
 * scaling_matrix

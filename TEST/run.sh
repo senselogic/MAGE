@@ -76,4 +76,8 @@ set -x
 ../mage "vector_zy_x_rotation_matrix" "vector_matrix" "z_rotation_matrix" "y_rotation_matrix" "x_rotation_matrix"
 ../mage --reverse "vector_z_yx_rotation_matrix" "vector_matrix" "z_rotation_matrix" "y_rotation_matrix" "x_rotation_matrix"
 
+../mage "scaling_zx_y_rotation_translation_matrix" "scaling_matrix" "z_rotation_matrix" "x_rotation_matrix" "y_rotation_matrix" "translation_matrix"
+../mage --reverse "scaling_z_xy_rotation_matrix" "scaling_matrix" "z_rotation_matrix" "x_rotation_matrix" "y_rotation_matrix" "translation_matrix"
 
+../mage "scaling_quaternion_translation_matrix" "scaling_matrix" "quaternion_matrix" "translation_matrix"
+../mage --reverse "scaling_quaternion_translation_matrix" "scaling_matrix" "quaternion_matrix" "translation_matrix"
