@@ -79,5 +79,11 @@ set -x
 ../mage "scaling_zx_y_rotation_translation_matrix" "scaling_matrix" "z_rotation_matrix" "x_rotation_matrix" "y_rotation_matrix" "translation_matrix"
 ../mage --reverse "scaling_z_xy_rotation_matrix" "scaling_matrix" "z_rotation_matrix" "x_rotation_matrix" "y_rotation_matrix" "translation_matrix"
 
+../mage "translation_yx_z_rotation_scaling_matrix" "translation_matrix" "y_rotation_matrix" "x_rotation_matrix" "z_rotation_matrix" "scaling_matrix"
+../mage --reverse "translation_y_xz_rotation_scaling_matrix" "translation_matrix" "y_rotation_matrix" "x_rotation_matrix" "z_rotation_matrix" "scaling_matrix"
+
 ../mage "scaling_quaternion_translation_matrix" "scaling_matrix" "quaternion_matrix" "translation_matrix"
 ../mage --reverse "scaling_quaternion_translation_matrix" "scaling_matrix" "quaternion_matrix" "translation_matrix"
+
+../mage "translation_quaternion_scaling_matrix" "translation_matrix" "quaternion_matrix" "scaling_matrix"
+../mage --reverse "translation_quaternion_scaling_matrix" "translation_matrix" "quaternion_matrix" "scaling_matrix"
